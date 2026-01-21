@@ -376,7 +376,7 @@ export default function Home() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="text-xl font-bold gradient-text">
-              Tousif Qasim
+              Tousif.
             </a>
 
             <div className="hidden md:flex items-center gap-8">
@@ -466,7 +466,7 @@ export default function Home() {
                 </h1>
                 <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
                   Building professional, automated, and secure{" "}
-                  <span className="text-blue-500 font-semibold underline underline-offset-4 decoration-blue-500/30">WordPress & WHMCS</span>{" "}
+                  <span className="text-blue-500 font-semibold underline underline-offset-4 decoration-blue-500/30">WordPress, Shopify & WHMCS</span>{" "}
                   solutions for businesses worldwide.
                 </p>
               </div>
@@ -627,29 +627,23 @@ export default function Home() {
               <Card className="border-border/50 bg-white/5 dark:bg-black/5 backdrop-blur-xl overflow-hidden">
                 <CardContent className="p-6 lg:p-8">
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <p>
-                      I&apos;m a passionate <span className="text-blue-500 font-semibold">WordPress & WHMCS Developer</span> with 
-                      over 7 years of hands-on experience in creating professional, automated, and secure web solutions. 
-                      Based in Hujra Shah Muqeem, Pakistan, I specialize in building custom websites, domain reseller 
-                      platforms, and comprehensive hosting solutions.
-                    </p>
-                    <p>
-                      My journey in web development began during my ICS graduation, and I&apos;ve since completed a 
-                      professional Web Development Diploma. Currently, I&apos;m expanding my expertise by studying 
-                      Data Science at Ideoversity Training Institute, Arfa Tower, combining my development skills 
-                      with data-driven insights.
-                    </p>
-                    <p>
-                      I believe in delivering end-to-end solutions that not only meet but exceed client expectations. 
-                      Whether it&apos;s recovering a hacked website, setting up automated billing systems, or creating 
-                      custom WordPress themes, I bring dedication and expertise to every project.
-                    </p>
+       <p>
+  Hi! I'm Tousif Qasim, a passionate <span className="text-blue-500 font-semibold">WordPress and Shopify developer</span> and an ICS graduate, currently studying Data Science at Ideoversity Training Institute, Arfa Tower. I have 7+ years of experience in WordPress, Shopify, and WHMCS development, delivering professional and highly functional web solutions.
+</p>
+<p>
+  I specialize in WordPress and Shopify development, offering services such as custom themes, plugins, eCommerce websites (WooCommerce & Shopify), WHMCS setup, configuration, and design, domain reseller integration (ResellerClub, OpenSRS, etc.), frontend integration, and full custom domain reseller platforms. I also handle website recovery, malware cleaning, responsive website design and development, and reliable hosting solutions with technical support.
+</p>
+<p>
+  Whether you need a custom WHMCS theme, a Shopify or WordPress eCommerce site, or a fully automated domain reseller system, I can help you build a modern, powerful, and seamless web solution for your business.
+</p>
+
+
                   </div>
 
                   <div className="flex flex-wrap gap-4 pt-6 mt-6 border-t border-white/10">
                     <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-sm">
                       <Mail className="h-4 w-4 text-blue-500" />
-                      <span>tousifqasim@gmail.com</span>
+                      <span>contact@tousifqasim.dev</span>
                     </div>
                     <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-sm">
                       <Phone className="h-4 w-4 text-blue-500" />
@@ -1459,13 +1453,13 @@ export default function Home() {
                     Contact Information
                   </h3>
                   <div className="space-y-4">
-                    <a href="mailto:tousifqasim@gmail.com" className="flex items-center gap-4 p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10 transition-colors group">
+                    <a href="mailto:contact@tousifqasim.dev" className="flex items-center gap-4 p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10 transition-colors group">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/20">
                         <Mail className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Email</p>
-                        <p className="font-semibold text-foreground">tousifqasim@gmail.com</p>
+                        <p className="font-semibold text-foreground">contact@tousifqasim.dev</p>
                       </div>
                     </a>
                     <a href="tel:+923106047449" className="flex items-center gap-4 p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10 transition-colors group">
@@ -1496,16 +1490,23 @@ export default function Home() {
                     Follow Me
                   </h3>
                   <div className="flex flex-wrap gap-3">
+                                <a
+  href="https://wa.me/923106047449"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center hover:bg-green-500/20 hover:border-green-500/40 hover:scale-110 transition-all"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="h-5 w-5 text-green-500"
+  >
+    <path d="M12.04 2C6.48 2 2 6.48 2 12.04c0 2.12.56 4.1 1.53 5.8L2 22l4.27-1.43c1.65.91 3.57 1.43 5.77 1.43 5.56 0 10.04-4.48 10.04-10.04C22.08 6.48 17.6 2 12.04 2zm5.7 14.32c-.23.66-1.33 1.27-1.92 1.35-.5.06-1.1.09-3.42-.86-3.1-1.3-5.09-5.25-5.25-5.46-.15-.21-1.3-1.8-1.3-3.44 0-1.64.87-2.44 1.17-2.77.3-.33.66-.41.88-.41.23 0 .45 0 .64.01.21.02.5-.08.78.57.28.64.94 2.22 1.02 2.38.08.16.12.34.03.54-.1.2-.15.32-.3.5-.15.18-.31.39-.44.53-.14.15-.28.32-.13.63.15.31.65 1.08 1.4 1.74.96.86 1.77 1.14 2.08 1.27.31.13.5.11.69-.07.19-.18.81-.94 1.01-1.26.2-.31.41-.26.68-.16.27.1 1.72.81 2.02.95.3.14.5.21.57.33.07.12.07.71-.16 1.37z" />
+  </svg>
+</a>
                     <a
-                      href="https://www.fiverr.com/mr_tousifqasim"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-xl bg-[#1DBF73]/10 border border-[#1DBF73]/20 flex items-center justify-center hover:bg-[#1DBF73]/20 hover:border-[#1DBF73]/40 hover:scale-110 transition-all"
-                    >
-                      <FiverrIcon className="h-5 w-5 text-[#1DBF73]" />
-                    </a>
-                    <a
-                      href="https://www.linkedin.com"
+                      href="https://www.linkedin.com/in/tousifqasim/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center hover:bg-blue-500/20 hover:border-blue-500/40 hover:scale-110 transition-all"
@@ -1513,7 +1514,7 @@ export default function Home() {
                       <Linkedin className="h-5 w-5 text-blue-500" />
                     </a>
                     <a
-                      href="https://www.instagram.com"
+                      href="https://www.instagram.com/tousifqasim/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center hover:bg-pink-500/20 hover:border-pink-500/40 hover:scale-110 transition-all"
@@ -1521,23 +1522,17 @@ export default function Home() {
                       <Instagram className="h-5 w-5 text-pink-500" />
                     </a>
                     <a
-                      href="https://www.facebook.com"
+                      href="https://www.facebook.com/imtousifqasim"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center hover:bg-blue-500/20 hover:border-blue-500/40 hover:scale-110 transition-all"
                     >
                       <Facebook className="h-5 w-5 text-blue-500" />
                     </a>
+    
+
                     <a
-                      href="https://www.snapchat.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center hover:bg-yellow-500/20 hover:border-yellow-500/40 hover:scale-110 transition-all"
-                    >
-                      <MessageCircle className="h-5 w-5 text-yellow-500" />
-                    </a>
-                    <a
-                      href="https://www.tiktok.com"
+                      href="https://www.tiktok.com/@itxtousifahmad"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-xl bg-foreground/10 border border-foreground/20 flex items-center justify-center hover:bg-foreground/20 hover:border-foreground/40 hover:scale-110 transition-all"
@@ -1720,7 +1715,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Tousif Qasim. All rights reserved.
+              © {new Date().getFullYear()} Tousif. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <a href="#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
