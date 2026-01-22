@@ -18,7 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Tousif Qasim | WordPress, Shopify & WHMCS Developer",
   description: "I’m Tousif Qasim, Professional WordPress, Shopify & WHMCS developer with 7+ years' experience, delivering custom websites, eCommerce stores, and automated solutions.",
-  
+   icons: {
+    icon: "/favicon.ico", // path to your favicon
+  },
   authors: [
     { name: 'Tousif Qasim', url: 'https://tousifqasim.dev/' }
   ],
@@ -28,6 +30,9 @@ export const metadata = {
     description: "I’m Tousif Qasim, Professional WordPress, Shopify & WHMCS developer with 7+ years' experience, delivering custom websites, eCommerce stores, and automated solutions.",
     url: "https://tousifqasim.dev/",
     siteName: "Tousif Qasim",
+       icons: {
+    icon: "/favicon.ico", // path to your favicon
+  },
     images: [
       {
         url: "https://i.postimg.cc/9Qj2mDzg/Tousif-Qasim.png",
