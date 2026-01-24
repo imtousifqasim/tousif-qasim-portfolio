@@ -50,9 +50,9 @@ export function HeroBackground() {
         />
       ))}
 
-      {/* Mouse Follower Glow */}
+      {/* Mouse Follower Glows */}
       <motion.div
-        className="absolute w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[120px]"
+        className="absolute w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px]"
         style={{
           x: x,
           y: y,
@@ -60,6 +60,40 @@ export function HeroBackground() {
           translateY: "-50%",
         }}
       />
+      <motion.div
+        className="absolute w-[400px] h-[400px] bg-cyan-400/10 rounded-full blur-[100px]"
+        style={{
+          x: x,
+          y: y,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
+      
+      {/* Interactive Dots around mouse */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={`dot-${i}`}
+          className="absolute w-2 h-2 bg-blue-400/40 rounded-full blur-sm"
+          style={{
+            x: x,
+            y: y,
+            translateX: "-50%",
+            translateY: "-50%",
+          }}
+          animate={{
+            x: [0, (i % 2 === 0 ? 1 : -1) * (i * 20)],
+            y: [0, (i % 3 === 0 ? 1 : -1) * (i * 15)],
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 2 + i,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+      ))}
     </div>
   )
 }

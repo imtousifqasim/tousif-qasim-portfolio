@@ -39,6 +39,7 @@ import {
   Quote,
   Building2,
   Layers,
+  Coins,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -143,6 +144,8 @@ const pricingPlans = [
   {
     name: "Starter",
     price: "$80",
+    pricePKR: "15,000 PKR",
+    originalPKR: "22,000 PKR",
     description: "Perfect for landing pages or portfolios",
     icon: Sparkles,
     popular: false,
@@ -159,6 +162,8 @@ const pricingPlans = [
   {
     name: "Professional",
     price: "$120",
+    pricePKR: "25,000 PKR",
+    originalPKR: "33,500 PKR",
     description: "Ideal for small businesses",
     icon: Zap,
     popular: true,
@@ -175,6 +180,8 @@ const pricingPlans = [
   {
     name: "Enterprise",
     price: "$150",
+    pricePKR: "35,000 PKR",
+    originalPKR: "42,000 PKR",
     description: "For growing businesses",
     icon: Crown,
     popular: false,
@@ -290,6 +297,7 @@ const projects = [
 export default function Home() {
   const { theme, setTheme } = useTheme()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [currency, setCurrency] = useState<"USD" | "PKR">("USD")
   const [formData, setFormData] = useState({ name: "", email: "", message: "", budget: "", interest: "" })
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
   const [showModal, setShowModal] = useState(false)
@@ -298,6 +306,21 @@ export default function Home() {
   const [portfolioIndex, setPortfolioIndex] = useState(0)
   const [isPortfolioPaused, setIsPortfolioPaused] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const detectCurrency = async () => {
+      try {
+        const response = await fetch("https://ipwho.is/")
+        const data = await response.json()
+        if (data.country_code === "PK") {
+          setCurrency("PKR")
+        }
+      } catch (error) {
+        console.error("Currency detection failed:", error)
+      }
+    }
+    detectCurrency()
+  }, [])
 
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prev) => (prev + 1) % reviewImages.length)
@@ -392,6 +415,33 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-4">
+              <div className="hidden sm:flex items-center bg-muted/50 rounded-full p-1 border border-border">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setCurrency("USD")}
+                  className={`rounded-full px-4 h-8 text-xs font-bold transition-all ${
+                    currency === "USD" 
+                      ? "bg-background text-foreground shadow-sm hover:bg-background" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                  }`}
+                >
+                  USD
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setCurrency("PKR")}
+                  className={`rounded-full px-4 h-8 text-xs font-bold transition-all ${
+                    currency === "PKR" 
+                      ? "bg-background text-foreground shadow-sm hover:bg-background" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                  }`}
+                >
+                  PKR
+                </Button>
+              </div>
+
               <Button
                 variant="ghost"
                 size="icon"
@@ -881,7 +931,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -890,17 +940,32 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full border-border/50 bg-white/5 dark:bg-black/5 backdrop-blur-xl group hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/20">
-                      <service.icon className="h-8 w-8 text-white" />
+                <Card className="h-full border-border/40 bg-white/5 dark:bg-black/5 backdrop-blur-xl group hover:border-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-500 relative overflow-hidden rounded-3xl">
+                  {/* Subtle Background Glow */}
+                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors" />
+                  
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex flex-col items-start text-left">
+                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${
+                        index % 3 === 0 ? "from-blue-600 to-cyan-500 shadow-blue-500/20" :
+                        index % 3 === 1 ? "from-violet-600 to-purple-500 shadow-violet-500/20" :
+                        "from-emerald-500 to-teal-400 shadow-emerald-500/20"
+                      } flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
+                        <service.icon className="h-7 w-7 text-white" />
+                      </div>
+                      
+                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-blue-500 transition-colors">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        {service.description}
+                      </p>
+
+                      <div className="flex items-center gap-2 text-sm font-bold text-blue-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                        Discuss Project <ChevronRight className="h-4 w-4" />
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-blue-500 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -976,16 +1041,31 @@ export default function Home() {
                     <h3 className="text-xl font-bold text-foreground mb-1">{plan.name}</h3>
                     <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">{plan.description}</p>
 
-                    <div className="mb-6">
-                      <span className={`text-4xl font-bold ${
-                        plan.popular ? "bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent" : "text-foreground"
-                      }`}>
-                        {plan.price}
-                      </span>
-                      <span className="text-muted-foreground text-sm">/project</span>
+                    <div className="mb-6 min-h-[80px] flex flex-col justify-end">
+                      {currency === "PKR" ? (
+                        <div className="flex flex-col">
+                          <span className="text-sm text-muted-foreground line-through opacity-60 mb-1">
+                            {plan.originalPKR}
+                          </span>
+                          <span className={`text-3xl sm:text-4xl font-bold ${
+                            plan.popular ? "bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent" : "text-foreground"
+                          }`}>
+                            {plan.pricePKR}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="flex items-baseline gap-1">
+                          <span className={`text-4xl font-bold ${
+                            plan.popular ? "bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent" : "text-foreground"
+                          }`}>
+                            {plan.price}
+                          </span>
+                        </div>
+                      )}
+                      <span className="text-muted-foreground text-xs font-medium uppercase tracking-wider mt-1">per project</span>
                     </div>
 
-                    <ul className="space-y-3 mb-6 flex-1">
+                    <ul className="space-y-3 mb-8 flex-1">
                       {plan.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-3 text-sm">
                           <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
@@ -995,21 +1075,33 @@ export default function Home() {
                           }`}>
                             <Check className="h-3 w-3" />
                           </div>
-                          <span className="text-muted-foreground">{feature}</span>
+                          <span className="text-muted-foreground/90">{feature}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <Button
-                      className={`w-full h-12 font-semibold transition-all mt-auto ${
-                        plan.popular
-                          ? "bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg shadow-blue-500/20"
-                          : "bg-blue-600 hover:bg-blue-700 text-white"
-                      }`}
-                      asChild
-                    >
-                      <a href="#contact">{plan.cta}</a>
-                    </Button>
+                    <div className="space-y-3 mt-auto">
+                      <Button
+                        className={`w-full h-12 font-bold transition-all duration-300 rounded-xl ${
+                          plan.popular
+                            ? "bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg shadow-blue-500/25 hover:scale-[1.02] active:scale-[0.98]"
+                            : "bg-foreground text-background hover:bg-foreground/90 shadow-lg shadow-foreground/5 hover:scale-[1.02] active:scale-[0.98]"
+                        }`}
+                        asChild
+                      >
+                        <a href="#contact">{plan.cta}</a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="w-full h-12 font-bold rounded-xl border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+                        asChild
+                      >
+                        <a href={`https://wa.me/923106047449?text=Hi Tousif! I'm interested in your ${plan.name} Package.`} target="_blank" rel="noopener noreferrer">
+                          <MessageCircle className="h-5 w-5" />
+                          WhatsApp
+                        </a>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -1051,16 +1143,28 @@ export default function Home() {
                       ))}
                     </div>
                     
-                    <div className="flex flex-row items-center justify-between sm:justify-start gap-4 pt-4 border-t border-violet-500/20 lg:border-0 lg:pt-0">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-violet-500/20 lg:border-0 lg:pt-0">
                       <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">
                         {customPlan.price}
                       </span>
-                      <Button
-                        className="bg-gradient-to-r from-violet-600 to-purple-500 hover:from-violet-700 hover:to-purple-600 text-white px-6 sm:px-8 h-10 sm:h-12 font-semibold shadow-lg shadow-violet-500/20"
-                        asChild
-                      >
-                        <a href="#contact">{customPlan.cta}</a>
-                      </Button>
+                      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                        <Button
+                          className="bg-gradient-to-r from-violet-600 to-purple-500 hover:from-violet-700 hover:to-purple-600 text-white px-8 h-12 font-bold rounded-xl shadow-lg shadow-violet-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                          asChild
+                        >
+                          <a href="#contact">{customPlan.cta}</a>
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="px-8 h-12 font-bold rounded-xl border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm"
+                          asChild
+                        >
+                          <a href="https://wa.me/923106047449?text=Hi Tousif! I have a custom project I'd like to discuss." target="_blank" rel="noopener noreferrer">
+                            <MessageCircle className="h-5 w-5" />
+                            WhatsApp
+                          </a>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
