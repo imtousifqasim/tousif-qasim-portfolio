@@ -21,10 +21,8 @@ import {
   Palette,
   Database,
   ChevronRight,
-  ChevronLeft,
   ExternalLink,
   Send,
-  Linkedin,
   Instagram,
   Facebook,
   MessageCircle,
@@ -39,7 +37,6 @@ import {
   Quote,
   Building2,
   Layers,
-  Coins,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -48,6 +45,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { HeroBackground } from "@/components/HeroBackground"
 import { FiverrIcon } from "@/components/FiverrIcon"
+import { SectionHeader } from "@/components/SectionHeader"
+import { TypingEffect } from "@/components/TypingEffect"
+import { StatsCounter } from "@/components/StatsCounter"
+import { BackToTop } from "@/components/BackToTop"
+import { SkillsSection } from "@/components/SkillsSection"
 
 const EMAILJS_SERVICE_ID = "service_d2gjkb9"
 const EMAILJS_TEMPLATE_ID = "template_e08qfnl"
@@ -294,6 +296,15 @@ const projects = [
   },
 ]
 
+const staggerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08 },
+  }),
+}
+
 export default function Home() {
   const { theme, setTheme } = useTheme()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -303,7 +314,16 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isCarouselPaused, setIsCarouselPaused] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const [activeSection, setActiveSection] = useState("home")
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => { document.body.style.overflow = "" }
+  }, [mobileMenuOpen])
 
   useEffect(() => {
     const detectCurrency = async () => {
@@ -332,14 +352,19 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = (scrollTop / docHeight) * 100
-      setScrollProgress(Math.min(100, Math.max(0, progress)))
+      const sections = navigation.map(n => n.href.slice(1))
+      const scrollPos = window.scrollY + 150
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i])
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sections[i])
+          break
+        }
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll)
     handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -379,16 +404,23 @@ export default function Home() {
             </a>
 
             <div className="hidden md:flex items-center gap-6">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-emerald-600 transition-colors relative group"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-600 transition-all group-hover:w-full" />
-                </a>
-              ))}
+              {navigation.map((item) => {
+                const isActive = activeSection === item.href.slice(1)
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={`text-sm font-medium transition-colors relative group ${
+                      isActive ? "text-emerald-600" : "text-muted-foreground hover:text-emerald-600"
+                    }`}
+                  >
+                    {item.name}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-emerald-600 transition-all ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`} />
+                  </a>
+                )
+              })}
             </div>
 
             <div className="flex items-center gap-3">
@@ -450,16 +482,23 @@ export default function Home() {
               className="md:hidden mt-2 px-4"
             >
               <div className="bg-background/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-1">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block px-4 py-3 text-sm font-medium text-muted-foreground hover:text-emerald-600 hover:bg-white/5 rounded-xl transition-all"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navigation.map((item) => {
+                  const isActive = activeSection === item.href.slice(1)
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block px-4 py-3 text-sm font-medium rounded-xl transition-all ${
+                        isActive
+                          ? "text-emerald-600 bg-emerald-600/10"
+                          : "text-muted-foreground hover:text-emerald-600 hover:bg-white/5"
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  )
+                })}
               </div>
             </motion.div>
           )}
@@ -500,7 +539,7 @@ export default function Home() {
                 </h1>
                 <p className="mt-8 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl font-medium">
                   Building professional, automated, and secure{" "}
-                  <span className="text-emerald-600">WordPress, Shopify & WHMCS</span>{" "}
+                  <TypingEffect />{" "}
                   solutions for businesses worldwide.
                 </p>
               </div>
@@ -529,18 +568,9 @@ export default function Home() {
                 </div>
 
               <div className="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 relative z-10">
-                  <div>
-                    <p className="text-3xl font-black text-[#00674b]">7+</p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground font-bold uppercase tracking-widest mt-1">Experience</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-black text-[#00674b]">50+</p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground font-bold uppercase tracking-widest mt-1">Success</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-black text-[#00674b]">100%</p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground font-bold uppercase tracking-widest mt-1">Quality</p>
-                  </div>
+                  <StatsCounter end={7} suffix="+" label="Experience" />
+                  <StatsCounter end={50} suffix="+" label="Success" />
+                  <StatsCounter end={100} suffix="%" label="Quality" />
                 </div>
             </motion.div>
 
@@ -634,21 +664,11 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-[#00674b]/10 text-[#00674b] border border-[#00674b]/20 mb-4 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-              My Story
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
-              Know Me{" "}
-              <span className="text-[#00674b]">Better</span>
-            </h2>
-          </motion.div>
+          <SectionHeader
+            badge="My Story"
+            title="Know Me"
+            highlighted="Better"
+          />
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <motion.div
@@ -735,6 +755,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SkillsSection />
+
       {/* Work Experience Section - Modern Bento Grid UI */}
       <section id="experience" className="relative py-24 overflow-hidden bg-muted/20">
         <div className="absolute inset-0 -z-10">
@@ -743,21 +765,11 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-[#00674b]/10 text-[#00674b] border border-[#00674b]/20 mb-4 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-              Career Journey
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
-              Work{" "}
-              <span className="text-[#00674b]">Experience</span>
-            </h2>
-          </motion.div>
+          <SectionHeader
+            badge="Career Journey"
+            title="Work"
+            highlighted="Experience"
+          />
 
           <div className="grid md:grid-cols-2 gap-6">
             {workExperience.map((job, index) => (
@@ -835,21 +847,11 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-[#00674b]/10 text-[#00674b] border border-[#00674b]/20 mb-4 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-              Our Expertise
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
-              Solutions We{" "}
-              <span className="text-[#00674b]">Deliver</span>
-            </h2>
-          </motion.div>
+          <SectionHeader
+            badge="Our Expertise"
+            title="Solutions We"
+            highlighted="Deliver"
+          />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {services.map((service, index) => (
@@ -1110,24 +1112,12 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-[#00674b]/10 text-[#00674b] border border-[#00674b]/20 mb-4 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-              Selected Work
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
-              Featured{" "}
-              <span className="text-[#00674b]">Projects</span>
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              A curated selection of digital experiences built with precision and care.
-            </p>
-          </motion.div>
+          <SectionHeader
+            badge="Selected Work"
+            title="Featured"
+            highlighted="Projects"
+            description="A curated selection of digital experiences built with precision and care."
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
@@ -1664,6 +1654,8 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <BackToTop />
 
       <footer className="py-8 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
