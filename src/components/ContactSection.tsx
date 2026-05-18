@@ -198,32 +198,32 @@ export function ContactSection() {
                       value={formData.budget}
                       onValueChange={(val) => setFormData({ ...formData, budget: val })}
                     >
-                      <SelectTrigger className="w-full h-14 text-base rounded-xl bg-white/5 dark:bg-black/10 border-white/10 focus:border-emerald-600/50 focus:ring-2 focus:ring-emerald-600/20 transition-all">
+                      <SelectTrigger className="w-full h-14 text-base rounded-xl bg-white/5 dark:bg-black/10 border-white/10 focus:border-emerald-600/50 focus-visible:ring-emerald-600/20 focus-visible:ring-offset-0 focus:ring-2 focus:ring-emerald-600/20 transition-all">
                         <SelectValue placeholder="Select Budget Range" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="< $100">
-                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                      <SelectContent className="border-white/10 bg-background/95 backdrop-blur-xl">
+                        <SelectItem value="< $100" className="py-3 px-3 text-base">
+                          <DollarSign className="h-4 w-4 shrink-0 text-emerald-600" />
                           &lt; $100
                         </SelectItem>
-                        <SelectItem value="$100 - $300">
-                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="$100 - $300" className="py-3 px-3 text-base">
+                          <DollarSign className="h-4 w-4 shrink-0 text-emerald-600" />
                           $100 - $300
                         </SelectItem>
-                        <SelectItem value="$300 - $500">
-                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="$300 - $500" className="py-3 px-3 text-base">
+                          <DollarSign className="h-4 w-4 shrink-0 text-emerald-600" />
                           $300 - $500
                         </SelectItem>
-                        <SelectItem value="$500 - $1000">
-                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="$500 - $1000" className="py-3 px-3 text-base">
+                          <DollarSign className="h-4 w-4 shrink-0 text-emerald-600" />
                           $500 - $1,000
                         </SelectItem>
-                        <SelectItem value="$1000+">
-                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="$1000+" className="py-3 px-3 text-base">
+                          <DollarSign className="h-4 w-4 shrink-0 text-emerald-600" />
                           $1,000+
                         </SelectItem>
-                        <SelectItem value="Not Sure">
-                          <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                        <SelectItem value="Not Sure" className="py-3 px-3 text-base">
+                          <HelpCircle className="h-4 w-4 shrink-0 text-muted-foreground" />
                           Not Sure
                         </SelectItem>
                       </SelectContent>
@@ -234,36 +234,36 @@ export function ContactSection() {
                       value={formData.interest}
                       onValueChange={(val) => setFormData({ ...formData, interest: val })}
                     >
-                      <SelectTrigger className="w-full h-14 text-base rounded-xl bg-white/5 dark:bg-black/10 border-white/10 focus:border-emerald-600/50 focus:ring-2 focus:ring-emerald-600/20 transition-all">
+                      <SelectTrigger className="w-full h-14 text-base rounded-xl bg-white/5 dark:bg-black/10 border-white/10 focus:border-emerald-600/50 focus-visible:ring-emerald-600/20 focus-visible:ring-offset-0 focus:ring-2 focus:ring-emerald-600/20 transition-all">
                         <SelectValue placeholder="What are you looking for?" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="WordPress Development">
-                          <Code className="h-4 w-4 text-emerald-600" />
+                      <SelectContent className="border-white/10 bg-background/95 backdrop-blur-xl">
+                        <SelectItem value="WordPress Development" className="py-3 px-3 text-base">
+                          <Code className="h-4 w-4 shrink-0 text-emerald-600" />
                           WordPress Development
                         </SelectItem>
-                        <SelectItem value="WHMCS Setup">
-                          <Package className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="WHMCS Setup" className="py-3 px-3 text-base">
+                          <Package className="h-4 w-4 shrink-0 text-emerald-600" />
                           WHMCS Setup
                         </SelectItem>
-                        <SelectItem value="Shopify Development">
-                          <ShoppingCart className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="Shopify Development" className="py-3 px-3 text-base">
+                          <ShoppingCart className="h-4 w-4 shrink-0 text-emerald-600" />
                           Shopify Development
                         </SelectItem>
-                        <SelectItem value="Website Security">
-                          <Shield className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="Website Security" className="py-3 px-3 text-base">
+                          <Shield className="h-4 w-4 shrink-0 text-emerald-600" />
                           Website Security / Recovery
                         </SelectItem>
-                        <SelectItem value="Web Hosting">
-                          <Server className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="Web Hosting" className="py-3 px-3 text-base">
+                          <Server className="h-4 w-4 shrink-0 text-emerald-600" />
                           Web Hosting
                         </SelectItem>
-                        <SelectItem value="Domain Reseller">
-                          <Globe className="h-4 w-4 text-emerald-600" />
+                        <SelectItem value="Domain Reseller" className="py-3 px-3 text-base">
+                          <Globe className="h-4 w-4 shrink-0 text-emerald-600" />
                           Domain Reseller Platform
                         </SelectItem>
-                        <SelectItem value="Other">
-                          <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                        <SelectItem value="Other" className="py-3 px-3 text-base">
+                          <HelpCircle className="h-4 w-4 shrink-0 text-muted-foreground" />
                           Other
                         </SelectItem>
                       </SelectContent>
