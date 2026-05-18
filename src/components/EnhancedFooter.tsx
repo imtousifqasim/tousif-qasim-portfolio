@@ -51,7 +51,7 @@ export function EnhancedFooter() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand */}
-          <div className="sm:col-span-2 md:col-span-1">
+          <div className="sm:col-span-2 md:col-span-1 flex flex-col">
             <a href="#home" className="text-2xl font-bold text-[#00674b]">
               Tousif.
             </a>
@@ -69,11 +69,11 @@ export function EnhancedFooter() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col">
             <h4 className="text-sm font-bold text-foreground uppercase tracking-widest mb-5">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex-1">
               {footerNav.map((link) => (
                 <li key={link.name}>
                   <a
@@ -88,11 +88,11 @@ export function EnhancedFooter() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="flex flex-col">
             <h4 className="text-sm font-bold text-foreground uppercase tracking-widest mb-5">
               Services
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex-1">
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-emerald-600 transition-colors">WordPress Development</a></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-emerald-600 transition-colors">WHMCS Setup</a></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-emerald-600 transition-colors">Shopify Development</a></li>
@@ -102,7 +102,7 @@ export function EnhancedFooter() {
           </div>
 
           {/* Social & CTA */}
-          <div>
+          <div className="flex flex-col">
             <h4 className="text-sm font-bold text-foreground uppercase tracking-widest mb-5">
               Connect
             </h4>
