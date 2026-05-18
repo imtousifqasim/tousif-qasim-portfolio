@@ -3,7 +3,6 @@
 import { Mail, Phone, ChevronUp } from "lucide-react"
 
 const footerNav = [
-  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
   { name: "Pricing", href: "#pricing" },
