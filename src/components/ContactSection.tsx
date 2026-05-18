@@ -4,8 +4,12 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Mail, Phone, MapPin, Send, Check, X, Instagram, Facebook, MessageCircle,
+  DollarSign, Code, Globe, ShoppingCart, Shield, Server, Package, HelpCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from "@/components/ui/select"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -190,35 +194,80 @@ export function ContactSection() {
                     />
 
                     {/* Budget Range Select */}
-                    <select
+                    <Select
                       value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full h-14 px-4 text-base rounded-xl bg-white/5 dark:bg-black/10 border border-white/10 text-muted-foreground focus:border-emerald-600/50 focus:ring-2 focus:ring-emerald-600/20 transition-all appearance-none"
+                      onValueChange={(val) => setFormData({ ...formData, budget: val })}
                     >
-                      <option value="" disabled>Select Budget Range</option>
-                      <option value="< $100">&lt; $100</option>
-                      <option value="$100 - $300">$100 - $300</option>
-                      <option value="$300 - $500">$300 - $500</option>
-                      <option value="$500 - $1000">$500 - $1,000</option>
-                      <option value="$1000+">$1,000+</option>
-                      <option value="Not Sure">Not Sure</option>
-                    </select>
+                      <SelectTrigger className="w-full h-14 text-base rounded-xl bg-white/5 dark:bg-black/10 border-white/10 focus:border-emerald-600/50 focus:ring-2 focus:ring-emerald-600/20 transition-all">
+                        <SelectValue placeholder="Select Budget Range" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="< $100">
+                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                          &lt; $100
+                        </SelectItem>
+                        <SelectItem value="$100 - $300">
+                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                          $100 - $300
+                        </SelectItem>
+                        <SelectItem value="$300 - $500">
+                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                          $300 - $500
+                        </SelectItem>
+                        <SelectItem value="$500 - $1000">
+                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                          $500 - $1,000
+                        </SelectItem>
+                        <SelectItem value="$1000+">
+                          <DollarSign className="h-4 w-4 text-emerald-600" />
+                          $1,000+
+                        </SelectItem>
+                        <SelectItem value="Not Sure">
+                          <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                          Not Sure
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
 
                     {/* Interest Select */}
-                    <select
+                    <Select
                       value={formData.interest}
-                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-full h-14 px-4 text-base rounded-xl bg-white/5 dark:bg-black/10 border border-white/10 text-muted-foreground focus:border-emerald-600/50 focus:ring-2 focus:ring-emerald-600/20 transition-all appearance-none"
+                      onValueChange={(val) => setFormData({ ...formData, interest: val })}
                     >
-                      <option value="" disabled>What are you looking for?</option>
-                      <option value="WordPress Development">WordPress Development</option>
-                      <option value="WHMCS Setup">WHMCS Setup</option>
-                      <option value="Shopify Development">Shopify Development</option>
-                      <option value="Website Security">Website Security / Recovery</option>
-                      <option value="Web Hosting">Web Hosting</option>
-                      <option value="Domain Reseller">Domain Reseller Platform</option>
-                      <option value="Other">Other</option>
-                    </select>
+                      <SelectTrigger className="w-full h-14 text-base rounded-xl bg-white/5 dark:bg-black/10 border-white/10 focus:border-emerald-600/50 focus:ring-2 focus:ring-emerald-600/20 transition-all">
+                        <SelectValue placeholder="What are you looking for?" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="WordPress Development">
+                          <Code className="h-4 w-4 text-emerald-600" />
+                          WordPress Development
+                        </SelectItem>
+                        <SelectItem value="WHMCS Setup">
+                          <Package className="h-4 w-4 text-emerald-600" />
+                          WHMCS Setup
+                        </SelectItem>
+                        <SelectItem value="Shopify Development">
+                          <ShoppingCart className="h-4 w-4 text-emerald-600" />
+                          Shopify Development
+                        </SelectItem>
+                        <SelectItem value="Website Security">
+                          <Shield className="h-4 w-4 text-emerald-600" />
+                          Website Security / Recovery
+                        </SelectItem>
+                        <SelectItem value="Web Hosting">
+                          <Server className="h-4 w-4 text-emerald-600" />
+                          Web Hosting
+                        </SelectItem>
+                        <SelectItem value="Domain Reseller">
+                          <Globe className="h-4 w-4 text-emerald-600" />
+                          Domain Reseller Platform
+                        </SelectItem>
+                        <SelectItem value="Other">
+                          <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                          Other
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
 
                     <Textarea
                       placeholder="Tell me about your project..."
