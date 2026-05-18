@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Phone, ChevronUp } from "lucide-react"
+import { Mail, Phone, ChevronUp, MapPin } from "lucide-react"
 
 const footerNav = [
   { name: "About", href: "#about" },
@@ -64,6 +64,10 @@ export function EnhancedFooter() {
             <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
               <Phone className="h-3.5 w-3.5" />
               <span>+92 328 6477314</span>
+            </div>
+            <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+              <MapPin className="h-3.5 w-3.5" />
+              <span>Hujra, Punjab, Pakistan</span>
             </div>
           </div>
 
