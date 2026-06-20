@@ -588,12 +588,8 @@ export default function WhatsAppChat() {
   useEffect(() => {
     const alreadyOpened = sessionStorage.getItem("chat_auto_opened")
     if (!alreadyOpened) {
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-        setUnreadCount(0)
-        sessionStorage.setItem("chat_auto_opened", "true")
-      }, 5500)
-      return () => clearTimeout(timer)
+      setUnreadCount(1)
+      sessionStorage.setItem("chat_auto_opened", "true")
     }
   }, [])
 
