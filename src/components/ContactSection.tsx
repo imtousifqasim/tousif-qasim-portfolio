@@ -16,9 +16,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import emailjs from "@emailjs/browser"
 
-const EMAILJS_SERVICE_ID = "service_d2gjkb9"
-const EMAILJS_TEMPLATE_ID = "template_e08qfnl"
-const EMAILJS_PUBLIC_KEY = "n5vtuVWEKDKDgQ8qe"
+const EMAILJS_SERVICE_ID = "service_h0vy9vu"
+const EMAILJS_TEMPLATE_ID = "template_d1uho8h"
+const EMAILJS_PUBLIC_KEY = "agnGT8GGLKKIdV3RJ"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "", budget: "", interest: "" })

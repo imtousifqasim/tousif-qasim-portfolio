@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { VisualEditsMessenger } from "orchids-visual-edits";
+import WhatsAppChat from "@/components/WhatsAppChat";
 import { ThemeProvider } from "@/components/theme-provider";
 import Script from "next/script";
 
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Tousif Qasim",
     images: [
       {
-        url: "https://i.postimg.cc/9Qj2mDzg/Tousif-Qasim.png",
+        url: "https://res.cloudinary.com/dy3l9ls1n/image/upload/q_auto/f_auto/v1781940829/Tousif-Qasim_y8xwis.webp",
         width: 1200,
         height: 630,
         alt: "Tousif Qasim – WordPress, Shopify & WHMCS Developer"
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tousif Qasim | WordPress, Shopify & WHMCS Developer",
     description: "I’m Tousif Qasim, Professional WordPress, Shopify & WHMCS developer with 7+ years' experience, delivering custom websites, eCommerce stores, and automated solutions.",
-    images: ["https://i.postimg.cc/9Qj2mDzg/Tousif-Qasim.png"],
+    images: ["https://res.cloudinary.com/dy3l9ls1n/image/upload/q_auto/f_auto/v1781940829/Tousif-Qasim_y8xwis.webp"],
     creator: "@tousifqasim"
   }
 };
@@ -71,7 +72,7 @@ export default function RootLayout({
               name: "Tousif Qasim",
               jobTitle: "WordPress, Shopify & WHMCS Developer",
               url: "https://tousifqasim.dev/",
-              image: "https://i.postimg.cc/9Qj2mDzg/Tousif-Qasim.png",
+              image: "https://res.cloudinary.com/dy3l9ls1n/image/upload/q_auto/f_auto/v1781940829/Tousif-Qasim_y8xwis.webp",
               sameAs: [
                 "https://twitter.com/tousifqasim"
               ]
@@ -97,6 +98,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <VisualEditsMessenger />
+        <WhatsAppChat />
       </body>
     </html>
   );

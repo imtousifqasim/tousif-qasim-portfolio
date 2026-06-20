@@ -11,16 +11,15 @@ import { SectionHeader } from "@/components/SectionHeader"
 import { TypingEffect } from "@/components/TypingEffect"
 import { StatsCounter } from "@/components/StatsCounter"
 import { BackToTop } from "@/components/BackToTop"
-import { SkillsSection } from "@/components/SkillsSection"
 import { PortfolioSection } from "@/components/PortfolioSection"
 import { ReviewsSection } from "@/components/ReviewsSection"
 import { PricingSection } from "@/components/PricingSection"
 import { ContactSection } from "@/components/ContactSection"
 import { EnhancedFooter } from "@/components/EnhancedFooter"
 
-const EMAILJS_SERVICE_ID = "service_d2gjkb9"
-const EMAILJS_TEMPLATE_ID = "template_e08qfnl"
-const EMAILJS_PUBLIC_KEY = "n5vtuVWEKDKDgQ8qe"
+const EMAILJS_SERVICE_ID = "service_h0vy9vu"
+const EMAILJS_TEMPLATE_ID = "template_d1uho8h"
+const EMAILJS_PUBLIC_KEY = "agnGT8GGLKKIdV3RJ"
 
 const navigation = [
   { name: "Home", href: "#home" },
@@ -38,53 +37,53 @@ const workExperience = [
     title: "WordPress Architect",
     company: "DigiScripts",
     period: "Jan 2020 – Present",
-    description: "Enterprise-level WordPress architecture, plugin development, scalable solutions, technical roadmap leadership.",
+    description: "Architect and maintain enterprise WordPress ecosystems including custom plugin development, multisite networks, and headless CMS implementations. Lead technical roadmap for WHMCS-WordPress integration, automate hosting provisioning workflows, and build scalable REST API solutions for client portals.",
     icon: Building2,
     color: "from-emerald-700 to-teal-500",
     current: true,
     featured: true,
-    skills: ["WordPress", "PHP", "WHMCS", "JavaScript", "API Integration", "MySQL"],
+    skills: ["WordPress", "WHMCS", "PHP", "JavaScript", "API Integration", "MySQL", "cPanel API", "Laravel"],
   },
   {
     title: "Senior WHMCS Developer",
     company: "KodeXs",
     period: "Mar 2019 – Dec 2020",
-    description: "Custom WHMCS modules, hosting automation, payment integrations.",
+    description: "Designed and deployed custom WHMCS modules for domain registration, SSL provisioning, and server management automation. Built payment gateway integrations including PayPal, Stripe, and 2Checkout. Automated cPanel account creation, suspension, and resource monitoring through WHMCS API hooks.",
     icon: Server,
     color: "from-emerald-500 to-teal-500",
     current: false,
     featured: false,
-    skills: ["WHMCS", "PHP", "Automation", "Payment Gateways"],
+    skills: ["WHMCS", "WordPress", "PHP", "cPanel/WHM API", "Payment Gateways", "Automation", "MySQL"],
   },
   {
-    title: "Full Stack Developer",
+    title: "WordPress & WHMCS Developer",
     company: "DigiX",
     period: "Jun 2018 – Feb 2019",
-    description: "PHP, JavaScript, APIs, database optimization, end-to-end web solutions.",
+    description: "Built custom WordPress plugins for membership management and e-commerce. Integrated WHMCS with WordPress for unified client billing and support ticketing. Optimized database queries and caching layers for high-traffic WordPress sites. Developed RESTful APIs connecting WHMCS to third-party provisioning platforms.",
     icon: Layers,
     color: "from-emerald-500 to-teal-500",
     current: false,
     featured: false,
-    skills: ["Full Stack", "JavaScript", "PHP", "API Development"],
+    skills: ["WordPress", "WHMCS", "PHP", "JavaScript", "API Development", "MySQL", "Redis"],
   },
   {
-    title: "Junior Developer",
+    title: "Junior WordPress Developer",
     company: "AZ Software House",
     period: "Sep 2016 – May 2018",
-    description: "WordPress themes/plugins, web fundamentals, client communication.",
+    description: "Developed custom WordPress themes from PSD/Figma mockups using PHP, HTML/CSS, and JavaScript. Built and maintained plugins for contact forms, sliders, and SEO optimization. Assisted in WHMCS template customization and email automation. Collaborated directly with clients on requirements gathering and revision cycles.",
     icon: Code,
     color: "from-[#00674b] to-[#00674b]",
     current: false,
     featured: true,
-    skills: ["WordPress", "HTML/CSS", "PHP", "Web Basics"],
+    skills: ["WordPress", "WHMCS", "PHP", "HTML/CSS", "JavaScript", "Plugin Development"],
   },
 ]
 
 const education = [
   { title: "Data Science", institution: "Ideoversity Training Institute, Arfa Tower", year: "Currently Studying", icon: Database },
   { title: "Web Development Diploma", institution: "Web Development Diploma", year: "2022-2023", icon: Code },
-  { title: "Inter in FCS Medical", institution: "FCS Medical", year: "2015-2016", icon: GraduationCap },
-  { title: "Matric", institution: "Matriculation", year: "2013-2014", icon: Award },
+  { title: "Inter in Computer Science (ICS)", institution: "ICS", year: "2023-2025", icon: GraduationCap },
+  { title: "Matric", institution: "Matriculation", year: "2021-2023", icon: Award },
 ]
 
 const services = [
@@ -370,7 +369,7 @@ export default function Home() {
                   {/* Glass Card Container */}
                   <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-white/20 shadow-[0_32px_64px_rgba(0,0,0,0.2)] bg-muted/20 backdrop-blur-sm transform group-hover:rotate-2 group-hover:scale-[1.02] transition-all duration-700">
                     <Image
-                      src="https://i.postimg.cc/9Qj2mDzg/Tousif-Qasim.png"
+                      src="https://res.cloudinary.com/dy3l9ls1n/image/upload/q_auto/f_auto/v1781940829/Tousif-Qasim_y8xwis.webp"
                       alt="Tousif Qasim"
                       fill
                       sizes="(max-width: 640px) 288px, (max-width: 768px) 320px, (max-width: 1024px) 420px, 480px"
@@ -536,8 +535,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <SkillsSection />
 
       {/* Work Experience Section - Modern Bento Grid UI */}
       <section id="experience" className="relative py-24 overflow-hidden bg-muted/20">
